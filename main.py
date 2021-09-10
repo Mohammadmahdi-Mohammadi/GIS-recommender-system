@@ -1,20 +1,31 @@
  #Import Library
+ #The openrouteservice library gives you painless access to the openrouteservice (ORS) routing API's. It performs requests against our API's for
 import openrouteservice
 from openrouteservice import convert
+#Folium is a Python library used for visualizing geospatial data. It is easy to use and yet a powerful library. Folium is a Python wrapper for Leaflet. 
+#js which is a leading open-source JavaScript library for plotting interactive maps. ... js and the simplicity of Python, which makes it an excellent tool for plotting maps.
 from folium.plugins import MarkerCluster
 import folium
 import xlrd
+
+#create map with coordiante 36.676056, 48.493992 for Zanjan
 map = folium.Map(location=[ 36.676056, 48.493992], zoom_start = 13)
 
+
+#this class is for locations there are in dataset 
 class object():
     def __init__(self,  category, name,x, y, color,  status ):
-        self.Category = category
-        self.Name = name
+        self.Category = category # band or gas_station or market
+        self.Name = name 
         self.X = x 
         self.Y = y
-        self.Color = color
+        self.Color = color #color of icons
+        #status is some thing for measerment suitable of that road
         self.Status = status
-        
+     
+  
+
+  #some function for object
     def SetCategory(self, category):
         self.Category = Category
     def SetName(self, name):
@@ -41,7 +52,7 @@ class object():
         return self.Status
 
 class recommenderSystem:
-    
+    #read exel file and puts them in list
     def ReadFile(self):
         # Give the location of the file
         loc = ("F:\python files\informations.xlsx")
@@ -50,13 +61,14 @@ class recommenderSystem:
         sheet = wb.sheet_by_index(0)
         return sheet
     
+    #create map and after that add some marker to it
     def CreateMap(self, sheet):
         #Create base map
         list = []
         #map = folium.Map(location=[ 36.676056, 48.493992], zoom_start = 13)
         
         for i in range(1, sheet.nrows):
-           
+            
             place = object(sheet.cell_value(i, 0), sheet.cell_value(i, 3) , sheet.cell_value(i, 2), sheet.cell_value(i, 1), sheet.cell_value(i, 4),  sheet.cell_value(i, 5))
             
             list.append(place)
@@ -65,8 +77,8 @@ class recommenderSystem:
         #Save the map
         map.save("map3.html")
         _user = User(sheet)
-        whichCategory = input("enter What place do you want to go?")
-        _user.SelectBest(list,whichCategory )
+        #whichCategory = input("enter What place do you want to go?")
+       # _user.SelectBest(list,whichCategory )
         if sheet.cell_value(2, 15) != 0:
             destinationX = sheet.cell_value(2, 15)
             destinationY = sheet.cell_value(2, 14)
