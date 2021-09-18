@@ -119,3 +119,13 @@ def get_recommendations(title, cosine_sim=cosine_sim):
             return i['name']
     return np.nan
     
+    def get_list(x):
+    if isinstance(x, list):
+        names = [i['name'] for i in x]
+        #Check if more than 3 elements exist. If yes, return only first three. If no, return entire list.
+        if len(names) > 3:
+            names = names[:3]
+        return names
+
+    #Return empty list in case of missing/malformed data
+    return []
