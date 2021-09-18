@@ -112,3 +112,10 @@ def get_recommendations(title, cosine_sim=cosine_sim):
 
     # Return the top 10 most similar movies
     return metadata['title'].iloc[movie_indices]
+    
+    def get_director(x):
+    for i in x:
+        if i['job'] == 'Director':
+            return i['name']
+    return np.nan
+    
