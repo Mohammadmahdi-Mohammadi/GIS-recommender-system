@@ -81,3 +81,12 @@ gs.fit(data)
 
 print(gs.best_score["rmse"])
 print(gs.best_params["rmse"])
+
+
+# Function that computes the weighted rating of each movie
+def weighted_rating(x, m=m, C=C):
+    v = x['vote_count']
+    R = x['vote_average']
+    # Calculation based on the IMDB formula
+    return (v/(v+m) * R) + (m/(m+v) * C)
+    
