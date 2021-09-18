@@ -129,3 +129,13 @@ def get_recommendations(title, cosine_sim=cosine_sim):
 
     #Return empty list in case of missing/malformed data
     return []
+    
+    def clean_data(x):
+    if isinstance(x, list):
+        return [str.lower(i.replace(" ", "")) for i in x]
+    else:
+        #Check if director exists. If not, return empty string
+        if isinstance(x, str):
+            return str.lower(x.replace(" ", ""))
+        else:
+            return ''
