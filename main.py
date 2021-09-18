@@ -139,3 +139,9 @@ def get_recommendations(title, cosine_sim=cosine_sim):
             return str.lower(x.replace(" ", ""))
         else:
             return ''
+            
+            # Import CountVectorizer and create the count matrix
+from sklearn.feature_extraction.text import CountVectorizer
+
+count = CountVectorizer(stop_words='english')
+count_matrix = count.fit_transform(metadata['soup'])
