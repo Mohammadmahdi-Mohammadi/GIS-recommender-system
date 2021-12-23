@@ -1,3 +1,4 @@
+
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
 norm_df = pd.read_csv('https://s3.us-east-2.amazonaws.com/www.findingmyschittscreek.com/Data/normalized_df_sub.csv', index_col=0)
